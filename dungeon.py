@@ -64,12 +64,10 @@ else:
     player_hit_damage = (player_attack - zombie_defense)
     player_attack_amount = math.ceil(zombie_health / player_hit_damage)
 
-    schade = player_attack_amount * zombie_hit_damage
-    new_helth = player_health - schade
-
     if player_attack_amount < zombie_attack_amount:
         print(f'In {player_attack_amount} rondes versla je de zombie.')
-        print(f'Je health is nu {new_helth}.')
+        player_health -= player_attack_amount * zombie_hit_damage
+        print(f'Je health is nu {player_health}.')
     else:
         print('Helaas is de zombie te sterk voor je.')
         print('Game over.')
