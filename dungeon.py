@@ -64,7 +64,8 @@ else:
     player_hit_damage = (player_attack - zombie_defense)
     player_attack_amount = math.ceil(zombie_health / player_hit_damage)
 
-    new_helth = player_attack_amount * zombie_hit_damage
+    schade = player_attack_amount * zombie_hit_damage
+    new_helth = player_health - schade
 
     if player_attack_amount < zombie_attack_amount:
         print(f'In {player_attack_amount} rondes versla je de zombie.')

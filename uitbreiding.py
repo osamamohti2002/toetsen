@@ -2,7 +2,7 @@ import time, math
 import random
 
 
-def gevechten():
+def zombie_gevecht():
     zombie_hit_damage = (zombie_attack - player_defense)
     if zombie_hit_damage <= 0:
         print('Jij hebt een te goede verdedigign voor de zombie, hij kan je geen schade doen.')
@@ -12,17 +12,44 @@ def gevechten():
         player_hit_damage = (player_attack - zombie_defense)
         player_attack_amount = math.ceil(zombie_health / player_hit_damage)
 
-        new_helth = player_attack_amount * zombie_hit_damage
+        schade = player_attack_amount * zombie_hit_damage
+        new_helthe = player_health - schade
+
 
         if player_attack_amount < zombie_attack_amount:
             print(f'In {player_attack_amount} rondes versla je de zombie.')
-            print(f'Je health is nu {new_helth}.')
+            print(f'Je health is nu {new_helthe}.')
         else:
             print('Helaas is de zombie te sterk voor je.')
             print('Game over.')
             exit()
     print('')
     time.sleep(1)
+
+
+def monster_gevecht():
+    monster_hit_damage = (monster_attack - player_defense)
+    if monster_hit_damage <= 0:
+        print('Jij hebt een te goede verdedigign voor de zombie, hij kan je geen schade doen.')
+    else:
+        monster_attack_amount = math.ceil(player_health / monster_hit_damage)
+
+        player_hit_damage = (player_attack - monster_defense)
+        player_attack_amount = math.ceil(monster_health / player_hit_damage)
+
+        schade = player_attack_amount * monster_hit_damage
+        new_helthe = player_health - schade
+
+        if player_attack_amount < monster_attack_amount:
+            print(f'In {player_attack_amount} rondes versla je de zombie.')
+            print(f'Je health is nu {new_helthe}.')
+        else:
+            print('Helaas is de zombie te sterk voor je.')
+            print('Game over.')
+            exit()
+    print('')
+    time.sleep(1)
+
 
 
 player_attack = 1
@@ -41,6 +68,7 @@ getal1 = random.randint(10, 25)
 getal2 = random.randint(-5, 75)
 totaal = (getal1 + getal2)
 sleutel = False
+
 print('Je stapt door de deur heen en je ziet een standbeeld voor je.')
 print('Het standbeeld heeft een sleutel vast.')
 print('Op zijn borst zit een numpad met de toesten 9 t/m 0.')
@@ -64,7 +92,8 @@ zombie_defense = 0
 zombie_health = 2
 print('Je loopt tegen een zombie aan.')
 # hier
-gevechten()
+zombie_gevecht()
+print(player_health)
 # === [kamer 3] === #
 item = ['schild', 'zwaard']
 wapen = random.choice(item)
@@ -85,7 +114,7 @@ time.sleep(1)
 monster_attack = 2
 monster_defense = 0
 monster_health = 3
-gevechten()
+monster_gevecht()
 
 # === [kamer 5] === #
 print('Voorzichtig open je de deur, je wilt niet nog een zombie tegenkomen.')
