@@ -51,7 +51,7 @@ if kant_kiezen == 'rechtdoor':
     print('Je ziet een deur achter het standbeeld.')
     print('')
     time.sleep(1)
-    keuze_kamer2 = input('Wil je naar kamer 6 of kamer 3 gaan? (Typ "6" of "3"): ')
+    keuze_kamer2 = input('Wil je naar kamer 6 of kamer 3 gaan? (Typ "6" of "8"): ')
     # === kamer 6 === #
     if keuze_kamer2 == '6':
         print('Je opent de deur naar kamer 6.')
@@ -104,7 +104,7 @@ if gok_machine == 'ja':
         player_health -=1
         print('helaas is er een punt van je health weggehaald maar je ruppees zijn verdubbelt')
         print('')
-    print(f'je hebt {totaal_dubbel_steen} gegooid')
+    print(f'je hebt {totaal_dubbel_steen}')
 # === [kamer 3] === #
 print('hier in kamer 3 kan je zwaard of schild kopen')
 wapen_kopen = input('wil je (zwaard) of (schild) of (niks) kopen')
