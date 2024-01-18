@@ -1,8 +1,30 @@
-[23: 38] Lithe
-Jnaid
 import time
 import math
 import random
+
+def zombie_gevecht(zombie, player_attack, player_defense, player_health, zombie_attack, zombie_defense, zombie_health):
+    print(f'Je loopt tegen een {zombie} aan.')
+    zombie_hit_damage = (zombie_attack - player_defense)
+    if zombie_hit_damage <= 0:
+        print('Jij hebt een te goede verdedigign voor de zombie, hij kan je geen schade doen.')
+    else:
+        zombie_attack_amount = math.ceil(player_health / zombie_hit_damage)
+
+        player_hit_damage = (player_attack - zombie_defense)
+        player_attack_amount = math.ceil(zombie_health / player_hit_damage)
+
+        if player_attack_amount < zombie_attack_amount:
+            print(f'In {player_attack_amount} rondes versla je de zombie.')
+            player_health = player_health - (player_attack_amount * zombie_hit_damage)
+            print(f'Je health is nu {player_health}.')
+        else:
+            print('Helaas is de zombie te sterk voor je.')
+            print('Game over.')
+            exit()
+    print('')
+    time.sleep(1)
+    return player_health
+
 
 player_attack = 1
 player_defense = 0
@@ -56,28 +78,12 @@ if kamer7_keuze == 2:
     if kamer2_keuze == 6:
         # === [kamer 6] === #
         print("=== [kamer 6] === ")
-        eerste_zombie_attack = 1
-        eerste_zombie_defense = 0
-        eerste_zombie_health = 2
+        zombie = 'zombie'
+        zombie_attack = 1
+        zombie_defense = 0
+        zombie_health = 2
 
-        print('Je loopt tegen een zombie aan.')
-        zombie_hit_damage = max(eerste_zombie_attack - player_defense, 0)
-
-        if zombie_hit_damage <= 0:
-            print('Jij hebt een te goede verdediging voor de zombie, hij kan je geen schade doen.')
-        else:
-            zombie_attack_amount = math.ceil(player_health / zombie_hit_damage)
-            player_hit_damage = max(player_attack - eerste_zombie_defense, 0)
-            player_attack_amount = math.ceil(eerste_zombie_health / player_hit_damage)
-            player_health -= player_attack_amount * zombie_hit_damage
-
-            if player_attack_amount < zombie_attack_amount:
-                print(f'In {player_attack_amount} rondes versla je de zombie.')
-                print(f'Je health is nu {player_health}.')
-            else:
-                print('Helaas is de zombie te sterk voor je.')
-        print('')
-        time.sleep(2)
+        zombie_gevecht(zombie, player_attack, player_defense, player_health, zombie_attack, zombie_defense, zombie_health)
         kamer6_keuze = int(input('wil je naar kamer 3 of kamer 8? '))
 
 if kamer7_keuze == 8 or kamer2_keuze == 8 or kamer6_keuze == 8:
@@ -125,6 +131,7 @@ if kamer7_keuze == 8 or kamer2_keuze == 8 or kamer6_keuze == 8:
         print("")
         time.sleep(2)
 
+    # if kamer9 != False or kamer8_keuze == 3 or kamer6_keuze == 3:
 # === [kamer 3] === #
 print("Welkom in kamer3 ")
 print('Je duwt hem open en stap een hele lange kamer binnen.')
@@ -168,55 +175,20 @@ time.sleep(2)
 
 # === [kamer 4] === #
 print("=== [kamer 4] ===")
-tweede_zombie_attack = 2
-tweede_zombie_defense = 0
-tweede_zombie_health = 3
+zombie = 'monster'
+zombie_attack = 2
+zombie_defense = 0
+zombie_health = 3
 
-print('Je loopt tegen een zombie aan.')
-zombie_hit_damage = max(tweede_zombie_attack - player_defense, 0)
-if zombie_hit_damage <= 0:
-    print('Jij hebt een te goede verdediging voor de zombie, hij kan je geen schade doen.')
-else:
-    zombie_attack_amount = math.ceil(player_health / zombie_hit_damage)
-    player_hit_damage = max(player_attack - tweede_zombie_defense, 0)
-    player_attack_amount = math.ceil(tweede_zombie_health / player_hit_damage)
+zombie_gevecht(zombie, player_attack, player_defense, player_health, zombie_attack, zombie_defense, zombie_health)
+# === [kamer 10] ===#
+print('=== [kamer 10] ===')
+zombie = 'dungeon boss'
+zombie_attack = 3
+zombie_defense = 1
+zombie_health = 5
 
-    if player_attack_amount < zombie_attack_amount:
-        print(f'In {player_attack_amount} rondes versla je de zombie.')
-        print(f'Je health is nu {player_health}.')
-    else:
-        print('Helaas is de zombie te sterk voor je.')
-        print('Game over.')
-        exit()
-
-print('')
-time.sleep(1)
-
-# === [kamer 10] === #
-print(" === [kamer 10] === ")
-derde_zombie_attack = 3
-derde_zombie_defense = 1
-derde_zombie_health = 5
-
-print('Je loopt tegen een zombie aan.')
-zombie_hit_damage = max(derde_zombie_attack - player_defense, 0)
-if zombie_hit_damage <= 0:
-    print('Jij hebt een te goede verdediging voor de zombie, hij kan je geen schade doen.')
-else:
-    zombie_attack_amount = math.ceil(player_health / zombie_hit_damage)
-    player_hit_damage = max(player_attack - derde_zombie_defense, 0)
-    player_attack_amount = math.ceil(derde_zombie_health / player_hit_damage)
-
-    if player_attack_amount < zombie_attack_amount:
-        print(f'In {player_attack_amount} rondes versla je de zombie.')
-        print(f'Je health is nu {player_health}.')
-    else:
-        print('Helaas is de zombie te sterk voor je.')
-        print('Game over.')
-        exit()
-
-print('')
-time.sleep(1)
+zombie_gevecht(zombie, player_attack, player_defense, player_health, zombie_attack, zombie_defense, zombie_health)
 
 # === [kamer 5] === #
 print("=== [kamer 5] ===")
