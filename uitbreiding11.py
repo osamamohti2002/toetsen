@@ -4,18 +4,19 @@ import random
 
 def zombie_gevecht(zombie, player_attack, player_defense, player_health, zombie_attack, zombie_defense, zombie_health):
     print(f'Je loopt tegen een {zombie} aan.')
-    zombie_hit_damage = (zombie_attack - player_defense)
+
+    zombie_hit_damage = max(zombie_attack - player_defense)
     if zombie_hit_damage <= 0:
         print('Jij hebt een te goede verdedigign voor de zombie, hij kan je geen schade doen.')
     else:
-        zombie_attack_amount = math.ceil(player_health / zombie_hit_damage)
+        zombie_attack_amount = math.ceil(player_health / max(zombie_hit_damage, 1))
 
-        player_hit_damage = (player_attack - zombie_defense)
+        player_hit_damage = max((player_attack - zombie_defense))
         player_attack_amount = math.ceil(zombie_health / player_hit_damage)
 
         if player_attack_amount < zombie_attack_amount:
             print(f'In {player_attack_amount} rondes versla je de zombie.')
-            player_health = player_health - (player_attack_amount * zombie_hit_damage)
+            player_health -= player_attack_amount * zombie_hit_damage
             print(f'Je health is nu {player_health}.')
         else:
             print('Helaas is de zombie te sterk voor je.')
@@ -23,6 +24,7 @@ def zombie_gevecht(zombie, player_attack, player_defense, player_health, zombie_
             exit()
     print('')
     time.sleep(1)
+
     return player_health
 
 player_attack = 1
@@ -178,19 +180,19 @@ if kamer3_keuze == 11:
     else:
         print("Game over")
         exit()
-print("")
-time.sleep(2)
-
+    print("")
+    time.sleep(2)
+else:
 # === [kamer 4] === #
-print("=== [kamer 4] ===")
-print('in kamer 4 is een monster je moet hem verslaan om door te kunnen gaan')
-zombie = 'monster'
-zombie_attack = 2
-zombie_defense = 0
-zombie_health = 3
+    print("=== [kamer 4] ===")
+    print('in kamer 4 is een monster je moet hem verslaan om door te kunnen gaan')
+    zombie = 'monster'
+    zombie_attack = 2
+    zombie_defense = 0
+    zombie_health = 3
 
-zombie_gevecht(zombie, player_attack, player_defense, player_health, zombie_attack, zombie_defense,
-               zombie_health)
+    zombie_gevecht(zombie, player_attack, player_defense, player_health, zombie_attack, zombie_defense,
+                   zombie_health)
 
 # === [kamer 10] === #
 print(" === [kamer 10] === ")
@@ -215,4 +217,5 @@ else:
     print("Je kan de schatkist niet open maken. Je verliest.")
     print("Game over")
     exit()
+
 

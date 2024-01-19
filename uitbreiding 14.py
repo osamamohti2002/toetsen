@@ -1,10 +1,10 @@
 import time
 import math
 import random
-
 def zombie_gevecht(zombie, player_attack, player_defense, player_health, zombie_attack, zombie_defense, zombie_health):
     print(f'Je loopt tegen een {zombie} aan.')
     zombie_hit_damage = max(zombie_attack - player_defense, 0)
+
     if zombie_hit_damage <= 0:
         print('Jij hebt een te goede verdediging voor de zombie, hij kan je geen schade doen.')
     else:
@@ -23,11 +23,14 @@ def zombie_gevecht(zombie, player_attack, player_defense, player_health, zombie_
     time.sleep(2)
     return player_health
 
+
+
 player_attack = 1
 player_defense = 0
 player_health = 3
 rupee = 0
 sleutel = False
+sleutel_kamer14 = False
 schatkist = 'sleutel'
 boom = False
 
@@ -82,11 +85,13 @@ if kamer7_keuze == 2:
         zombie_health = 2
         zombie_gevecht(zombie, player_attack, player_defense, player_health, zombie_attack, zombie_defense,
                        zombie_health)
+
         kamer6_keuze = int(input('wil je naar kamer 3 of kamer 8? '))
 
 if kamer7_keuze == 8 or kamer2_keuze == 8 or kamer6_keuze == 8:
     # === [kamer 8] === #
     print("=== [kamer 8] ===")
+
     eerste_dubbel_steen = random.randint(1, 7)
     tweede_dubbel_steen = random.randint(1, 7)
     uitkomst = eerste_dubbel_steen + tweede_dubbel_steen
@@ -111,69 +116,78 @@ if kamer7_keuze == 8 or kamer2_keuze == 8 or kamer6_keuze == 8:
         print("")
         time.sleep(2)
 
-    kamer8_keuze = int(input("Wlke kamer wil je heen gaan (3/9)? "))
-    if kamer8_keuze == 9:
-        print("Kamer9")
-        # === [kamer 9] === #
-        print("JE komt naar kamer waarbij hulp middelen zijn")
-        hulp_middel = random.choice([player_defense, player_health])
-
-        if hulp_middel == player_defense:
-            player_defense += 1
-            print(f"Je hebt defense gekregen je huidige defense is {player_defense}")
-        else:
-            player_health += 2
-            print(f"Je hebt een health gekregen en je huidige health is {player_health}")
-            kamer9 = True
+    kamer8_keuze = int(input("Wlke kamer wil je heen gaan (3/9/14)? "))
+    if kamer8_keuze == 14:
+        print("Kamer14")
+        # === [kamer 14] === #
+        print("Hier ligt de sleutel voor de deur naar kamer 10.")
+        sleutel_kamer14 = True
         print("")
         time.sleep(2)
 
+        if sleutel_kamer14 or kamer8_keuze == 9:
+    # if kamer8_keuze == 9 or kamer8_keuze == 14:
+            print("Kamer9")
+            # === [kamer 9] === #
+            print("JE komt naar kamer waarbij hulp middelen zijn")
+            hulp_middel = random.choice([player_defense, player_health])
 
+            if hulp_middel == player_defense:
+                player_defense += 1
+                print(f"Je hebt defense gekregen je huidige defense is {player_defense}")
+            else:
+                player_health += 2
+                print(f"Je hebt een health gekregen en je huidige health is {player_health}")
+                kamer9 = True
+            print("")
+            time.sleep(2)
+        kamer9_keuze = int(input('wil je naar kamer (4/3)'))
+        if kamer9_keuze == 3 or kamer8_keuze == 3 or kamer6_keuze:
 # === [kamer 3] === #
-print("Welkom in kamer3 ")
-print(f"Je huidige saldo is {rupee} rupee")
-print('Je duwt hem open en stap een hele lange kamer binnen.')
-print('items zijn (schild) (boom) (sleutel)')
-if rupee >= 3:
-    print('je kan nu alle items kopen type (alles) als je alles wilt kopen')
-elif rupee == 2:
-    print('je kan nu 2 items kopen ')
-elif rupee == 1:
-    print('je kan alleen maar een item kopen')
-wapen_kopen = input('wat wil je kopen? ')
-if wapen_kopen == 'alles':
-    player_defense += 1
-    boom = True
-    sleutel = True
-elif wapen_kopen == 'schild en boom':
-    player_defense += 1
-    boom = True
-elif wapen_kopen == 'boom en sleutel':
-    boom = True
-    sleutel = True
-elif wapen_kopen == 'schild en sleutel':
-    player_defense += 1
-    sleutel = True
-elif wapen_kopen == 'boom':
-    boom = True
-elif wapen_kopen == 'schild':
-    player_defense += 1
-else:
-    print('je hebt niks gekocht')
-print(f'je hebt gekozen voor {wapen_kopen} success verder')
-kamer3_keuze = int(input("Naar wlke kamer wil je heen gaan (11/4)? "))
-if kamer3_keuze == 11:
-    # === [kamer 11] === #
-    print(" === [kamer 11] === ")
-    print(
-        "Deze kamer zit vol met pijlen die uit de muur schieten. Alleen als je een schild heeft kan je hier heelhuids doorheen komen. ")
-    if 'schild' in wapen_kopen:
-        print("Je kan door")
-    else:
-        print("Game over")
-        exit()
-    print("")
-    time.sleep(2)
+            print("Welkom in kamer3 ")
+            print(f"Je huidige saldo is {rupee} rupee")
+            print('Je duwt hem open en stap een hele lange kamer binnen.')
+            print('items zijn (schild) (boom) (sleutel)')
+            if rupee >= 3:
+                print('je kan nu alle items kopen type (alles) als je alles wilt kopen')
+            elif rupee == 2:
+                print('je kan nu 2 items kopen ')
+            elif rupee == 1:
+                print('je kan alleen maar een item kopen')
+            wapen_kopen = input('wat wil je kopen? ')
+            if wapen_kopen == 'alles':
+                player_defense += 1
+                boom = True
+                sleutel = True
+            elif wapen_kopen == 'schild en boom':
+                player_defense += 1
+                boom = True
+            elif wapen_kopen == 'boom en sleutel':
+                boom = True
+                sleutel = True
+            elif wapen_kopen == 'schild en sleutel':
+                player_defense += 1
+                sleutel = True
+            elif wapen_kopen == 'boom':
+                boom = True
+            elif wapen_kopen == 'schild':
+                player_defense += 1
+            else:
+                print('je hebt niks gekocht')
+            print(f'je hebt gekozen voor {wapen_kopen} success verder')
+            kamer3_keuze = int(input("Naar wlke kamer wil je heen gaan (11/4)? "))
+            if kamer3_keuze == 11:
+                # === [kamer 11] === #
+                print(" === [kamer 11] === ")
+                print(
+                    "Deze kamer zit vol met pijlen die uit de muur schieten. Alleen als je een schild heeft kan je hier heelhuids doorheen komen. ")
+                if 'schild' in wapen_kopen:
+                    print("Je kan door")
+                else:
+                    print("Game over")
+                    exit()
+                print("")
+                time.sleep(2)
 else:
     # === [kamer 4] === #
     print("=== [kamer 4] ===")
@@ -181,8 +195,10 @@ else:
     zombie_attack = 2
     zombie_defense = 0
     zombie_health = 3
+
     zombie_gevecht(zombie, player_attack, player_defense, player_health, zombie_attack, zombie_defense,
                    zombie_health)
+
 
     kamer4_keuze = int(input("Naar welke kamer wil je heen gaan 12/10? "))
     if kamer4_keuze == 12:
@@ -193,14 +209,20 @@ else:
         exit()
 
 # === [kamer 10] === #
-print(" === [kamer 10] === ")
-zombie = 'dungeon boss'
-zombie_attack = 3
-zombie_defense = 1
-zombie_health = 5
 
-zombie_gevecht(zombie, player_attack, player_defense, player_health, zombie_attack, zombie_defense,
-               zombie_health)
+print(" === [kamer 10] === ")
+print(
+    "Het slot op deze kamer is op twee manieren te openen, met de sleutel uit kamer 14 of met de bom als de speler die heeft.")
+if sleutel_kamer14 or boom:
+    zombie = 'dungeon boss'
+    zombie_attack = 3
+    zombie_defense = 1
+    zombie_health = 5
+
+    zombie_gevecht(zombie, player_attack, player_defense, player_health, zombie_attack, zombie_defense,
+                   zombie_health)
+else:
+    print('deze kamer kan je niet in!')
 
 # === [kamer 5] === #
 print("=== [kamer 5] ===")
