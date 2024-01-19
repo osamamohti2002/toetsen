@@ -25,6 +25,8 @@ def zombie_gevecht(zombie, player_attack, player_defense, player_health, zombie_
     time.sleep(1)
     return player_health
 
+
+
 player_attack = 1
 player_defense = 0
 player_health = 3
@@ -32,6 +34,7 @@ rupee = 0
 sleutel = False
 schatkist = 'sleutel'
 
+bom = False
 kamer9 = False
 
 # === [kamer 1] === #
@@ -133,7 +136,7 @@ if kamer7_keuze == 8 or kamer2_keuze == 8 or kamer6_keuze == 8:
 # === [kamer 3] === #
 print("Welkom in kamer3 ")
 print('Je duwt hem open en stap een hele lange kamer binnen.')
-print('items zijn (schild) (zwaard) (sleutel)')
+print('items zijn (schild) (bom) (sleutel)')
 
 if rupee >= 3:
     print('je kan nu alle items kopen type (alles) als je alles wilt kopen')
@@ -148,19 +151,19 @@ if rupee != 0:
     wapen_kopen = input('wat wil je kopen je? ')
     if wapen_kopen == 'alles':
         player_defense += 1
-        player_attack += 2
+        bom = True
         sleutel = True
-    elif wapen_kopen == 'schild en zwaard':
+    elif wapen_kopen == 'schild en bom':
         player_defense += 1
-        player_attack += 2
-    elif wapen_kopen == 'zwaard en sleutel':
+        bom = True
+    elif wapen_kopen == 'bom en sleutel':
         player_attack += 2
         sleutel = True
     elif wapen_kopen == 'schild en sleutel':
         player_defense += 1
         sleutel = True
     elif wapen_kopen == 'zwaard':
-        player_attack += 2
+        bom = True
     elif wapen_kopen == 'schild':
         player_defense += 1
     else:
@@ -194,6 +197,7 @@ zombie_gevecht(zombie, player_attack, player_defense, player_health, zombie_atta
 
 # === [kamer 10] === #
 print(" === [kamer 10] === ")
+print(" === [kamer 10] === ")
 zombie = 'dungeon boss'
 zombie_attack = 3
 zombie_defense = 1
@@ -202,14 +206,13 @@ zombie_health = 5
 zombie_gevecht(zombie, player_attack, player_defense, player_health, zombie_attack, zombie_defense,
                zombie_health)
 
-
 # === [kamer 5] === #
 print("=== [kamer 5] ===")
 print('Voorzichtig open je de deur, je wilt niet nog een zombie tegenkomen.')
 print('Tot je verbazing zie je een schatkist in het midden van de kamer staan.')
 print('Je loopt er naartoe.')
 
-if sleutel:
+if sleutel or bom:
     print("Je kan de schatkist open maken, je hebt gewonnen")
 else:
     print("Je kan de schatkist niet open maken. Je verliest.")
