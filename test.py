@@ -73,5 +73,5 @@ if kamer_keuze == 2:
     kamer_keuze = int(input('wil je naar kamer 8 of 6? '))
     if kamer_keuze == 6:
         kamer6 = True
-        
+
 

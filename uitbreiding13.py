@@ -47,7 +47,7 @@ time.sleep(2)
  
 # === [kamer 7] === #
 print("=== [kamer 7] ===")
-kans_voor_rupee = random.randint(1,2)
+kans_voor_rupee = random.randint(1,10)
 if kans_voor_rupee == 2:
     rupee += 1
     print(f"Je krijgt nu {rupee} rupee zodat je straks je eigen wapens kan kopen.")
